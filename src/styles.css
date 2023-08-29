@@ -1,8 +1,4 @@
-body {
-  margin: 0;
-}
-html,
-body,
-#root {
-  height: 100%;
+.App {
+  font-family: sans-serif;
+  text-align: center;
 }

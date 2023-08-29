@@ -1,26 +1,32 @@
 {
-  "name": "vhs-theater",
+  "name": "react",
   "version": "1.0.0",
-  "description": "Scene exported with Spline",
+  "description": "React example starter project",
   "keywords": [
     "react",
-    "spline",
-    "three.js"
+    "starter"
   ],
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
+  "main": "src/index.js",
   "dependencies": {
-    "@splinetool/react-spline": "^2.2.1",
-    "@splinetool/runtime": "^0.9.431",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "loader-utils": "3.2.1",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-scripts": "5.0.1"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^3.1.0-beta.0",
-    "vite": "^4.1.0-beta.1"
-  }
+    "@babel/runtime": "7.13.8",
+    "typescript": "4.1.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
 }
