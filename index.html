@@ -7,7 +7,7 @@
   </head>
   <body style="text-align: center; padding: 0; border: 0; margin: 0;">
     <canvas id="unity-canvas" width=900 height=1200 tabindex="-1" style="width: 900px; height: 1200px; background: #231F20"></canvas>
-    <script src="Build/url_231107.loader.js"></script>
+    <script src="Build/touch_231107.loader.js"></script>
     <script>
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         // Mobile device style: fill the whole browser client area with the game canvas:
@@ -25,9 +25,9 @@
       }
 
       createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/url_231107.data.unityweb",
-        frameworkUrl: "Build/url_231107.framework.js.unityweb",
-        codeUrl: "Build/url_231107.wasm.unityweb",
+        dataUrl: "Build/touch_231107.data.unityweb",
+        frameworkUrl: "Build/touch_231107.framework.js.unityweb",
+        codeUrl: "Build/touch_231107.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "verkehrshaus",
         productName: "VHSmap",
