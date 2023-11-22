@@ -17,17 +17,19 @@ body { text-align: center; padding: 0; border: 0; margin: 0 }
     background-image: url('Loading Icon.png');
     background-size: contain;
     background-repeat: no-repeat;
-    background-position: center;
+    background-position: top;
+    margin-top: 10px;
+    margin-bottom: 10px;
 
-    width: 80%;
+    width: 95%;
     height: 600px;
 }
 
 #custom-loader {
-    margin-top: 2px;
+    
     width: 80%;
     height: 20px;
-    border-radius: 5%;
+    border-radius: 5px;
     background: lightgray;
     box-shadow: 0px 0px 10px 5px black;
 }
@@ -35,14 +37,14 @@ body { text-align: center; padding: 0; border: 0; margin: 0 }
 #custom-loader .fill {
     width: 0%;
     height: 100%;
-    border-radius: 5%;
+    border-radius: 5px;
     background: rgb(125, 160, 236);
 }
 
 #custom-loader .label {
     position: relative;
-    top: 10px;
-    font-size: 20px;
+    top: -10px;
+    font-size: 15px;
     text-align: center;
     font-family: sans-serif, calibri;
 }
