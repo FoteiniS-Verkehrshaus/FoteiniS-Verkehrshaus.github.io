@@ -19,27 +19,29 @@ body { text-align: center; padding: 0; border: 0; margin: 0 }
     background-repeat: no-repeat;
     background-position: center;
 
-    width: 600px;
-    height: 600px;
+    width: 80%;
+    /*height: 600px;*/
 }
 
 #custom-loader {
-    margin-top: 180px;
-    width: 70%;
-    height: 35px;
+    margin-top: 2px;
+    width: 80%;
+    height: 7%;
+    border-radius: 30%;
     background: lightgray;
-    box-shadow: 0px 0px 15px 5px black;
+    box-shadow: 0px 0px 10px 5px black;
 }
 
 #custom-loader .fill {
     width: 0%;
     height: 100%;
-    background: rgb(132, 125, 236);
+    border-radius: 30%;
+    background: rgb(125, 160, 236);
 }
 
 #custom-loader .label {
-    position: relative;
-    top: -55px;
+    /*position: relative;
+    top: -55px;*/
     font-size: 25px;
     text-align: center;
     font-family: sans-serif, calibri;
