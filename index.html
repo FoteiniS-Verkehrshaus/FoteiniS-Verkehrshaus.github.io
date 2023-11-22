@@ -4,11 +4,37 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | VHSmap</title>
+    <style>
+      #loading-screen {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: #231F20;
+          display: none;
+          justify-content: center;
+          align-items: center;
+      }
+      #loading-screen p {
+          font-size: 24px;
+          color: #ffffff;
+      }
+  </style>
+
   </head>
   <body style="text-align: center; padding: 0; border: 0; margin: 0;">
+    <!-- Loading screen -->
+    <div id="loading-screen">
+    <p>Loading...</p>
+    <!-- You can add a loading animation or any other content here -->
+    </div>
     <canvas id="unity-canvas" width=900 height=1200 tabindex="-1" style="width: 900px; height: 1200px; background: #231F20"></canvas>
     <script src="Build/touch_231107.loader.js"></script>
     <script>
+      // Display loading screen
+      var loadingScreen = document.getElementById("loading-screen");
+        loadingScreen.style.display = "block";
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         // Mobile device style: fill the whole browser client area with the game canvas:
         var meta = document.createElement('meta');
@@ -22,7 +48,7 @@
         canvas.style.position = "fixed";
 
         document.body.style.textAlign = "left";
-        document.body.style.background = "#323336"; 
+        document.body.style.background = "#1a1a1c"; 
       }
       else
       {
@@ -33,11 +59,13 @@
 
         var canvas = document.querySelector("#unity-canvas");
         canvas.style.width = "100%";
+        canvas.style.maxWidth = "1000px"; // Set your desired maximum width for desktop
         canvas.style.height = "100%";
         canvas.style.position = "fixed";
+        canvas.style.margin = "0 auto";
 
         document.body.style.textAlign = "left";
-        document.body.style.background = "#323336"; 
+        document.body.style.background = "#1a1a1c"; 
       }
 
 
@@ -51,6 +79,11 @@
         productVersion: "0.1",
         // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
         // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+
+        // Add event listener for the Unity instance initialization
+      }).then(function (unityInstance) {
+            // Hide loading screen once Unity content is loaded
+            loadingScreen.style.display = "none";
       });
     </script>
   </body>
