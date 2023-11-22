@@ -15,19 +15,15 @@
           <div class="fill"></div>
           <div class="label"></div>
         </div>
+        <p>Loading...</p>
       </div>
       <div id="unity-warning"> </div>
-      <div id="unity-footer">
-        <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">Verkehrshaus 3D map</div>
-      </div>
     </div>
     <script>
       var container = document.querySelector("#unity-container");
       var canvas = document.querySelector("#unity-canvas");
       var loadingScreen = document.querySelector("#unity-custom-loading-screen");
       var customLoadingBar = document.querySelector("#custom-loader");
-      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
       var warningBanner = document.querySelector("#unity-warning");
 
       // Shows a temporary message banner/ribbon for a few seconds, or
@@ -86,7 +82,7 @@
         canvas.style.position = "fixed";
 
         document.body.style.textAlign = "left";
-        document.body.style.background = "#36363b"; 
+        document.body.style.background = "#27272b"; 
         
         
       } else {
@@ -97,7 +93,7 @@
         canvas.style.margin = "0 auto";
 
         document.body.style.textAlign = "left";
-        document.body.style.background = "#36363b"; 
+        document.body.style.background = "#27272b"; 
       }
       loadingScreen.style.display = "block";
 
@@ -108,9 +104,6 @@
           unitySetLoaderProgressTo(progress);
         }).then((unityInstance) => {
           loadingScreen.style.display = "none";
-          fullscreenButton.onclick = () => {
-            unityInstance.SetFullscreen(1);
-          };
         }).catch((message) => {
           alert(message);
         });
