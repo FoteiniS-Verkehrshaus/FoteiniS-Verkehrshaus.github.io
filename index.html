@@ -13,8 +13,12 @@
           height: 100%;
           background: #3535cc;
           display: none;
-          justify-content: center;
-          align-items: center;
+          justify-content: left;
+          align-items: left;
+      }
+      #loading-screen img {
+            max-width: 100%; /* Ensure the image doesn't exceed the container's width */
+            max-height: 100%; /* Ensure the image doesn't exceed the container's height */
       }
       #loading-screen p {
           font-size: 100px;
@@ -26,6 +30,7 @@
   <body style="text-align: center; padding: 0; border: 0; margin: 0;">
     <!-- Loading screen -->
     <div id="loading-screen">
+      <img src="images/3DTheater.png" alt="Loading Image">
       <p>Loading...</p>
       <!-- You can add a loading animation or any other content here -->
     </div>
