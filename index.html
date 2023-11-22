@@ -4,42 +4,21 @@
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | VHSmap</title>
-    <style>
-      #loading-screen {
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
-          background: #3535cc;
-          display: flex;
-          justify-content: left;
-          align-items: left;
-      }
-      #loading-screen img {
-            max-width: 100%; /* Ensure the image doesn't exceed the container's width */
-            max-height: 100%; /* Ensure the image doesn't exceed the container's height */
-      }
-      #loading-screen p {
-          font-size: 100px;
-          color: #ffffff;
-      }
-  </style>
-
+    <link rel ="stylesheet" href="TemplateData/style.css">
+    <link rel ="shortcut icon" href="TemplateData/favicon.ico"/> 
+    <script src ="TemplateData/UnityProgress.js" ></script>
   </head>
   <body style="text-align: center; padding: 0; border: 0; margin: 0;">
-    <!-- Loading screen -->
-    <div id="loading-screen">
-      <img src="images/3DTheater.png" alt="Loading Image">
-      <p>Loading...</p>
-      <!-- You can add a loading animation or any other content here -->
+    <canvas id="unity-canvas" width=900 height=1200 tabindex="-1" style="width: 900px; height: 1200px; background: #373A48"></canvas>
+    <div class="backgroundpicture"></div>
+    <div id="loadingBox">
+      <div id="bgBar"></div>
+      <div id="progressBarBackground"></div>
+      <div id="progressBar"></div>
+      <p id="loadingText"> Get Ready to Launch 🚀</p>
     </div>
-    <canvas id="unity-canvas" width=900 height=1200 tabindex="-1" style="width: 900px; height: 1200px; background: #231F20"></canvas>
-    <script src="Build/touch_231107.loader.js"></script>
+    <script src="Build/231122.loader.js"></script>
     <script>
-      // Display loading screen
-      var loadingScreen = document.getElementById("loading-screen");
-        loadingScreen.style.display = "flex";
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         // Mobile device style: fill the whole browser client area with the game canvas:
         var meta = document.createElement('meta');
@@ -57,14 +36,8 @@
       }
       else
       {
-        //var meta = document.createElement('meta');
-        //meta.name = 'viewport';
-        //meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-        //document.getElementsByTagName('head')[0].appendChild(meta);
-
         var canvas = document.querySelector("#unity-canvas");
         canvas.style.width = "100%";
-        //canvas.style.maxWidth = "1000px"; // Set your desired maximum width for desktop
         canvas.style.height = "100%";
         canvas.style.position = "fixed";
         canvas.style.margin = "0 auto";
@@ -73,22 +46,16 @@
         document.body.style.background = "#36363b"; 
       }
 
-
       createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/touch_231107.data.unityweb",
-        frameworkUrl: "Build/touch_231107.framework.js.unityweb",
-        codeUrl: "Build/touch_231107.wasm.unityweb",
+        dataUrl: "Build/231122.data.unityweb",
+        frameworkUrl: "Build/231122.framework.js.unityweb",
+        codeUrl: "Build/231122.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "verkehrshaus",
         productName: "VHSmap",
         productVersion: "0.1",
         // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
         // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
-
-        // Add event listener for the Unity instance initialization
-      }).then(function (unityInstance) {
-            // Hide loading screen once Unity content is loaded
-            loadingScreen.style.display = "none";
       });
     </script>
   </body>
