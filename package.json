@@ -1,14 +1,14 @@
 {
   "name": "my-cms",
   "version": "1.0.0",
-  "description": "",
+  "description": "A simple content management system.",
   "main": "index.js",
   "scripts": {
-    "start": "node aindex.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["content-management", "nodejs", "express"],
+  "author": "Foteini",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
