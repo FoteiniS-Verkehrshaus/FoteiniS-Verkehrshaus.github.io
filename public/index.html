@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <title>Image Management</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="header">
+    <div class="title-container">
+        <h1>VHS Orientation</h1>
+        <h2>Image Management</h2>
+    </div>
+    <img src="images/logo.png" alt="Logo" class="logo">
+  </div>
+  <div class="category">
+    <h3>FloorPlans_Layouts</h3>
+</div>
+</div>
+  <div class="table-container">
+    <table>
+      <tr>
+        <th>Title</th>
+        <th>Choose File</th>
+        <th>Upload</th>
+        <th>Last Uploaded</th>
+        <th>URL</th>
+        <th>Image Preview</th>
+      </tr>
+      <!-- Image Slot 1 -->
+      <tr>
+        <td>ENERGIE</td>
+        <td><input type="file" id="file1"></td>
+        <td><button onclick="uploadFile(1)">Upload</button></td>
+        <td id="lastUploaded1">Not uploaded</td>
+        <td><a id="fileLink1" href="/uploads/1">/uploads/1</a></td>
+        <td><img id="previewImg1" src="" alt="Image preview" class="image-preview"></td>
+      </tr>
+      <tr>
+        <td class="separator" colspan="6"></td>></td>
+      </tr>
+      <!-- Image Slot 2 -->
+      <tr>
+          <td>SCHIENENVERKEHR</td>
+          <td><input type="file" id="file2"></td>
+          <td><button onclick="uploadFile(2)">Upload</button></td>
+          <td id="lastUploaded2">Not uploaded</td>
+          <td><a id="fileLink2" href="/uploads/2">/uploads/2</a></td>
+          <td><img id="previewImg2" src="" alt="Image preview" class="image-preview"></td>
+        </tr>
+      <tr>
+        <td class="separator" colspan="6" ></td>
+      </tr>
+      <!-- Image Slot 3 -->
+      <tr>
+        <td>STRASSENVERKEHR EG</td>
+        <td><input type="file" id="file3"></td>
+        <td><button onclick="uploadFile(3)">Upload</button></td>
+        <td id="lastUploaded3">Not uploaded</td>
+        <td><a id="fileLink3"  href="/uploads/3">/uploads/3</a></td>
+        <td><img id="previewImg3" src="" alt="Image preview" class="image-preview"></td>
+      </tr>
+      <!-- Image Slot 4 -->
+      <tr>
+        <td>STRASSENVERKEHR 1OG</td>
+        <td><input type="file" id="file4"></td>
+        <td><button onclick="uploadFile(4)">Upload</button></td>
+        <td id="lastUploaded4">Not uploaded</td>
+        <td><a id="fileLink4" href="/uploads/4">/uploads/4</a></td>
+        <td><img id="previewImg4" src="" alt="Image preview" class="image-preview"></td>
+      </tr>
+      <!-- Image Slot 5 -->
+      <tr>
+        <td>STRASSENVERKEHR 2OG</td>
+        <td><input type="file" id="file5"></td>
+        <td><button onclick="uploadFile(5)">Upload</button></td>
+        <td id="lastUploaded5">Not uploaded</td>
+        <td><a id="fileLink5" href="/uploads/5">/uploads/5</a></td>
+        <td><img id="previewImg5" src="" alt="Image preview" class="image-preview"></td>
+      </tr>
+      <tr>
+        <td class="separator" colspan="6"></td>
+      </tr>
+      <!-- Image Slot 6 -->
+      <tr>
+        <td>SCHIFFFAHRT</td>
+        <td><input type="file" id="file6"></td>
+        <td><button onclick="uploadFile(6)">Upload</button></td>
+        <td id="lastUploaded6">Not uploaded</td>
+        <td><a id="fileLink6" href="/uploads/6">/uploads/6</a></td>
+        <td><img id="previewImg6" src="" alt="Image preview" class="image-preview"></td>
+      </tr>
+      <!-- Add more rows for each image slot -->
+    </table>
+  </div>
+  <script>
+    function uploadFile(slot) {
+      const formData = new FormData();
+      const fileInput = document.getElementById('file' + slot);
+      formData.append('file', fileInput.files[0]);
+  
+      fetch('/upload/' + slot, {
+        method: 'POST',
+        body: formData
+      }).then(response => {
+        if (!response.ok) {
+          throw new Error('Upload failed');
+        }
+        return response.json();
+      }).then(data => {
+        let newImageSrc = data.filePath + '?t=' + new Date().getTime();
+        document.getElementById('previewImg' + slot).src = newImageSrc;
+        document.getElementById('fileLink' + slot).href = data.filePath;
+        document.getElementById('fileLink' + slot).textContent = data.filePath;
+        document.getElementById('lastUploaded' + slot).innerText = new Date().toLocaleString(); 
+      }).catch(error => {
+        console.error('Error:', error);
+      });
+    }
+  
+    window.onload = function() {
+      fetch('/imageData').then(response => response.json()).then(data => {
+        Object.keys(data).forEach(slot => {
+           let imageElement = document.getElementById('previewImg' + slot);
+            let linkElement = document.getElementById('fileLink' + slot);
+            let lastUploadedElement = document.getElementById('lastUploaded' + slot);
+
+            if(imageElement && data[slot].filePath) {
+              imageElement.src = data[slot].filePath;
+            }
+            if(linkElement) {
+              linkElement.href = data[slot].filePath;
+              linkElement.textContent = data[slot].filePath;
+            }
+            if(lastUploadedElement && data[slot].lastUploaded) {
+              lastUploadedElement.innerText = new Date(data[slot].lastUploaded).toLocaleString();
+            }
+    });
+      }).catch(error => {
+        console.error('Error fetching imageData:', error);
+      });
+    }
+  </script>
+  
+</body>
+</html>
