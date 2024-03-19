@@ -10,7 +10,8 @@
     <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas" width=900 height=1200></canvas>
       <div id="unity-custom-loading-screen">
-        <div id="custom-logo"></div>
+        <div id="logo"></div>
+        <div id="image"></div>
         <div id="custom-loader">
           <div class="fill"></div>
           <div class="label"></div>
@@ -82,7 +83,7 @@
         canvas.style.position = "fixed";
 
         document.body.style.textAlign = "left";
-        document.body.style.background = "#252526"; 
+        document.body.style.background = "#303030"; 
       } else {
         container.className = "unity-desktop";
         var canvas = document.querySelector("#unity-canvas");
@@ -91,7 +92,7 @@
         canvas.style.position = "fixed";
 
         document.body.style.textAlign = "left";
-        document.body.style.background = "#252526"; 
+        document.body.style.background = "#303030"; 
       }
       loadingScreen.style.display = "block";
 
@@ -101,6 +102,7 @@
         createUnityInstance(canvas, config, (progress) => {
           unitySetLoaderProgressTo(progress);
         }).then((unityInstance) => {
+          unitySetLoaderProgressTo(1);
           loadingScreen.style.display = "none";
           
         }).catch((message) => {
