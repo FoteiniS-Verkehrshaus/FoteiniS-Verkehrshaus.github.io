@@ -62,7 +62,7 @@ body {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom :0px;
+    bottom :5%;
     width: 90%;
     height: 30px;
     border-radius: 8px;
