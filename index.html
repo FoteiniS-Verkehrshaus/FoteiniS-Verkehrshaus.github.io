@@ -27,6 +27,10 @@
       var customLoadingBar = document.querySelector("#custom-loader");
       var fullscreenButton = document.querySelector("#unity-fullscreen-button");
       var warningBanner = document.querySelector("#unity-warning");
+      var loadingTextElement = document.querySelector("#loading-text");
+      var texts = ['Starting up...', 'Loading trains...','Creating planes...', 'Exploring submarines...', 'Landing spaceships...'];
+      var currentTextIndex = 0;
+
 
       // Shows a temporary message banner/ribbon for a few seconds, or
       // a permanent error message on top of the canvas if type=='error'.
@@ -34,6 +38,14 @@
       // Modify or remove this function to customize the visually presented
       // way that non-critical warnings and error messages are presented to the
       // user.
+      function updateLoadingText() {
+        loadingTextElement.textContent = texts[currentTextIndex];
+        currentTextIndex = (currentTextIndex + 1) % texts.length; 
+       }
+       updateLoadingText();
+       setInterval(updateLoadingText, 2000);
+
+
       function unityShowBanner(msg, type) {
         function updateBannerVisibility() {
           warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
@@ -116,7 +128,6 @@
       {
         const fill = customLoadingBar.getElementsByClassName("fill")[0];
         const fillText = customLoadingBar.getElementsByClassName("label")[0];
-        const loadingText = document.querySelector("#loading-text"); 
 
         fill.animate(
           [
@@ -129,17 +140,7 @@
         );
 
         fillText.textContent = (value * 100).toFixed() + "%";
-        if (value < 0.25) {
-        loadingText.textContent = 'STARTING UP...';
-    } else if (value < 0.5) {
-        loadingText.textContent = 'LOADING TRAINS...';
-    } else if (value < 0.75) {
-        loadingText.textContent = 'FIXING CARS...';
-    } else if (value < 1) {
-        loadingText.textContent = 'LANDING SPACESHIPS...';
-    } else {
-        loadingText.textContent = 'READY!';
-    }
+        
       }
        
     </script>
