@@ -10,6 +10,7 @@
     <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas" width=900 height=1200></canvas>
       <div id="unity-custom-loading-screen">
+        <div id="loading-text"> LANDING SPACESHIPS...</div>
         <div id="logo"></div>
         <div id="image"></div>
         <div id="custom-loader">
@@ -52,11 +53,11 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/web2.loader.js";
+      var loaderUrl = buildUrl + "/web4.loader.js";
       var config = {
-        dataUrl: buildUrl + "/web2.data.unityweb",
-        frameworkUrl: buildUrl + "/web2.framework.js.unityweb",
-        codeUrl: buildUrl + "/web2.wasm.unityweb",
+        dataUrl: buildUrl + "/web4.data.unityweb",
+        frameworkUrl: buildUrl + "/web4.framework.js.unityweb",
+        codeUrl: buildUrl + "/web4.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Verkehrshaus der Schweiz",
         productName: "VHSmap",
@@ -102,9 +103,8 @@
         createUnityInstance(canvas, config, (progress) => {
           unitySetLoaderProgressTo(progress);
         }).then((unityInstance) => {
-          unitySetLoaderProgressTo(1);
-          loadingScreen.style.display = "none";
-          
+            unitySetLoaderProgressTo(1);
+            loadingScreen.style.display = "none";
         }).catch((message) => {
           alert(message);
         });
@@ -116,6 +116,7 @@
       {
         const fill = customLoadingBar.getElementsByClassName("fill")[0];
         const fillText = customLoadingBar.getElementsByClassName("label")[0];
+        const loadingText = document.querySelector("#loading-text"); 
 
         fill.animate(
           [
@@ -128,6 +129,17 @@
         );
 
         fillText.textContent = (value * 100).toFixed() + "%";
+        if (value < 0.25) {
+        loadingText.textContent = 'STARTING UP...';
+    } else if (value < 0.5) {
+        loadingText.textContent = 'LOADING TRAINS...';
+    } else if (value < 0.75) {
+        loadingText.textContent = 'FIXING CARS...';
+    } else if (value < 1) {
+        loadingText.textContent = 'LANDING SPACESHIPS...';
+    } else {
+        loadingText.textContent = 'READY!';
+    }
       }
        
     </script>
