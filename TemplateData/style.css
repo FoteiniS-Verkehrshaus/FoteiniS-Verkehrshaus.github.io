@@ -14,12 +14,7 @@ body {
     width: 100%;
     height: 100%;
 }
-.unity-desktop #unity-canvas2{
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    background: #303030; /* Consistent background color */
-}
+.unity-desktop #unity-canvas,
 .unity-mobile #unity-canvas {
     width: 100%;
     height: 100%;
