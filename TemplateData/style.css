@@ -98,9 +98,14 @@ body {
     text-align: center;
     font-family: sans-serif, calibri;
 }
-@media (max-width: 768px) {
+@media (orientation: landscape) {
     
-  
+    .unity-desktop #unity-canvas,
+    .unity-mobile #unity-canvas {
+        height: 100%;
+        width: calc(100% * 6 / 5); /* Maintain the 6:5 ratio */
+        max-width: 100%; /* Prevent overflow */
+    }
     #image {
       width: 90%; 
       
