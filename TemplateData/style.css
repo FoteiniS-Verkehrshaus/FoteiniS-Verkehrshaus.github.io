@@ -14,8 +14,13 @@ body {
     width: 100%;
     height: 100%;
 }
-.unity-desktop #unity-canvas,
-.unity-mobile #unity-canvas {
+.unity-desktop{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background: #303030; /* Consistent background color */
+}
+.unity-mobile  {
     width: 100%;
     height: 100%;
     position: fixed;
@@ -125,7 +130,7 @@ body {
         overflow: hidden;
     }
 
-    .unity-desktop #unity-canvas
+    .unity-desktop
     {
         position: absolute;
         top: 0;
