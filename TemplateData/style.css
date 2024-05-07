@@ -103,8 +103,8 @@ body {
     .unity-desktop #unity-canvas,
     .unity-mobile #unity-canvas {
         height: 100%;
-        width: calc(100% * 6 / 5); /* Maintain the 6:5 ratio */
-        max-width: 100%; /* Prevent overflow */
+        width: 60%; /* Maintain the 6:5 ratio */
+        /* Prevent overflow */
     }
     #image {
       width: 90%; 
