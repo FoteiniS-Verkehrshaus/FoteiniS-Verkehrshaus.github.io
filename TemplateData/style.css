@@ -134,8 +134,8 @@ body {
         transform: translateX(-50%);
 
         height: 100vh; /* Full height */
-        width: calc(100vh * 6 / 5); /* Maintain 6:5 aspect ratio */
+        width: 65%; /* Maintain 6:5 aspect ratio */
 
-        max-width: 100vw; /* Prevent overflow in smaller screens */
+         /* Prevent overflow in smaller screens */
     }
 }
