@@ -1,148 +1,64 @@
 <!DOCTYPE html>
-<html lang="en-us">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Unity WebGL Player | VHS 3D MAP</title>
-    <link rel="stylesheet" href="TemplateData/style.css">
-  </head>
-  <body>
-    <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=900 height=1200></canvas>
-      <div id="unity-custom-loading-screen">
-        <div id="loading-text"> LANDING SPACESHIPS...</div>
-        <div id="logo"></div>
-        <div id="image"></div>
-        <div id="custom-loader">
-          <div class="fill"></div>
-          <div class="label"></div>
-        </div>
-      </div>
-      <div id="unity-warning"> </div>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AR Marker Example</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+    <script src="./Scripts/app.js"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        .control-buttons {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        .control-buttons button {
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #3498db;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <a-scene embedded arjs>
+        <!-- Marker entity that links to a pattern marker file -->
+        <a-marker preset="custom" type="pattern" url="C:\Users\fsa\Desktop\webar-project\Images\locomotive.patt">
+            <!-- 3D Model Entity -->
+            <a-entity
+                id="3d-model"
+                gltf-model="url(./Models/train.gltf)"
+                position="0 0 0"
+                scale="0.5 0.5 0.5"
+                rotation="0 0 0">
+            </a-entity>
+
+            <!-- Text Information -->
+            <a-text
+                value="Scan the marker to see the 3D model!"
+                position="0 1 0"
+                scale="2 2 2"
+                color="white">
+            </a-text>
+        </a-marker>
+        <!-- Fallback AR camera -->
+        <a-entity camera></a-entity>
+    </a-scene>
+    <!-- UI Buttons -->
+    <div class="control-buttons">
+        <button id="btn-scale-up">Scale Up</button>
+        <button id="btn-scale-down">Scale Down</button>
+        <button id="btn-rotate">Rotate</button>
     </div>
-    <script>
-      var container = document.querySelector("#unity-container");
-      var canvas = document.querySelector("#unity-canvas");
-      var loadingScreen = document.querySelector("#unity-custom-loading-screen");
-      var customLoadingBar = document.querySelector("#custom-loader");
-      var fullscreenButton = document.querySelector("#unity-fullscreen-button");
-      var warningBanner = document.querySelector("#unity-warning");
-      var loadingTextElement = document.querySelector("#loading-text");
-      var texts = ['Starting up...', 'Loading trains...','Creating planes...', 'Exploring submarines...', 'Landing spaceships...'];
-      var currentTextIndex = 0;
-
-
-      // Shows a temporary message banner/ribbon for a few seconds, or
-      // a permanent error message on top of the canvas if type=='error'.
-      // If type=='warning', a yellow highlight color is used.
-      // Modify or remove this function to customize the visually presented
-      // way that non-critical warnings and error messages are presented to the
-      // user.
-      function updateLoadingText() {
-        loadingTextElement.textContent = texts[currentTextIndex];
-        currentTextIndex = (currentTextIndex + 1) % texts.length; 
-       }
-       updateLoadingText();
-       setInterval(updateLoadingText, 2000);
-
-
-      function unityShowBanner(msg, type) {
-        function updateBannerVisibility() {
-          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
-        }
-        var div = document.createElement('div');
-        div.innerHTML = msg;
-        warningBanner.appendChild(div);
-        if (type == 'error') div.style = 'background: red; padding: 10px;';
-        else {
-          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
-          setTimeout(function() {
-            warningBanner.removeChild(div);
-            updateBannerVisibility();
-          }, 5000);
-        }
-        updateBannerVisibility();
-      }
-
-      var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/240507.loader.js";
-      var config = {
-        dataUrl: buildUrl + "/240507.data.unityweb",
-        frameworkUrl: buildUrl + "/240507.framework.js.unityweb",
-        codeUrl: buildUrl + "/240507.wasm.unityweb",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "Verkehrshaus der Schweiz",
-        productName: "VHSmap",
-        productVersion: "0.1",
-      };
-
-      // By default Unity keeps WebGL canvas render target size matched with
-      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
-      // Set this to false if you want to decouple this synchronization from
-      // happening inside the engine, and you would instead like to size up
-      // the canvas DOM size and WebGL render target sizes yourself.
-      // config.matchWebGLToCanvasSize = false;
-
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        container.className = "unity-mobile";
-        canvas.className = "unity-mobile";
-        var meta = document.createElement('meta');
-        meta.name = 'viewport';
-        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-        document.getElementsByTagName('head')[0].appendChild(meta);
-
-       /* canvas.style.width = "100%";
-        canvas.style.height = "100%";
-        canvas.style.position = "fixed";*/
-
-        document.body.style.textAlign = "left";
-        document.body.style.background = "#303030"; 
-      } else {
-        container.className = "unity-desktop";
-        canvas.className = "unity-desktop";
-        /*canvas.style.width = "100%";
-        canvas.style.height = "100%";
-        canvas.style.position = "fixed";*/
-
-        document.body.style.textAlign = "left";
-        document.body.style.background = "#303030"; 
-      }
-      loadingScreen.style.display = "block";
-
-      var script = document.createElement("script");
-      script.src = loaderUrl;
-      script.onload = () => {
-        createUnityInstance(canvas, config, (progress) => {
-          unitySetLoaderProgressTo(progress);
-        }).then((unityInstance) => {
-            unitySetLoaderProgressTo(1);
-            loadingScreen.style.display = "none";
-        }).catch((message) => {
-          alert(message);
-        });
-      };
-      document.body.appendChild(script);
-
-      // value - 0 to 1
-      function unitySetLoaderProgressTo(value)
-      {
-        const fill = customLoadingBar.getElementsByClassName("fill")[0];
-        const fillText = customLoadingBar.getElementsByClassName("label")[0];
-
-        fill.animate(
-          [
-            { width: (value * 100) + "%" }
-          ],
-          {
-            duration: 300,
-            fill: "forwards"
-          }
-        );
-
-        fillText.textContent = (value * 100).toFixed() + "%";
-        
-      }
-       
-    </script>
-  </body>
+</body>
 </html>
