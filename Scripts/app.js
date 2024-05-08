@@ -2,14 +2,16 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     const model = document.querySelector('#3d-model');
-    if (model === null) {
-        console.error('Error: #3d-model not found.');
-        return;
-    }
     const scaleUpBtn = document.getElementById('btn-scale-up');
     const scaleDownBtn = document.getElementById('btn-scale-down');
     const rotateBtn = document.getElementById('btn-rotate');
 
+    if (model === null) {
+        console.error('Error: #3d-model not found.');
+        return;
+    }
+
+    // Initial scale and rotation values
     let scale = { x: 0.5, y: 0.5, z: 0.5 };
     let rotation = { x: 0, y: 0, z: 0 };
 
