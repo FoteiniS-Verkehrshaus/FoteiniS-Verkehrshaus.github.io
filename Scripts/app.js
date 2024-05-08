@@ -1,7 +1,7 @@
 // `app.js` file
 
 document.addEventListener('DOMContentLoaded', () => {
-    const model = document.querySelector('3dmodel');
+    const model = document.querySelector('#train');
     const scaleUpBtn = document.getElementById('btn-scale-up');
     const scaleDownBtn = document.getElementById('btn-scale-down');
     const rotateBtn = document.getElementById('btn-rotate');
