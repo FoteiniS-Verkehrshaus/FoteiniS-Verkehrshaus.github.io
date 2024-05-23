@@ -2,46 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AR Marker Example</title>
+    <title>Simple AR Example</title>
     <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-    <script src="./Scripts/app.js"></script>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-        }
-        .control-buttons {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-        }
-        .control-buttons button {
-            padding: 10px 15px;
-            font-size: 16px;
-            cursor: pointer;
-            border: none;
-            border-radius: 5px;
-            background-color: #3498db;
-            color: white;
-        }
-    </style>
 </head>
-<body>
+<body style="margin: 0; overflow: hidden;">
     <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false;'>
-        <a-marker preset="custom" type="pattern" url="./Images/locomotive.patt">
-            <!-- Simple Cube Entity -->
+        <a-marker preset="hiro">
             <a-box position="0 0.5 0" material="color: red; opacity: 0.8;"></a-box>
-            <!-- Text Entity -->
             <a-text value="Marker Found!" color="green" position="0 1 -2" scale="2 2 2"></a-text>
         </a-marker>
-        <!-- Fallback AR camera -->
         <a-entity camera></a-entity>
     </a-scene>
-    <!-- UI Buttons -->
-    
 </body>
 </html>
