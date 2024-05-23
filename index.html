@@ -10,6 +10,13 @@
     <a-scene embedded arjs='sourceType: webcam; debugUIEnabled: false;'>
         <a-marker preset="hiro">
             <a-box position="0 0.5 0" material="color: red; opacity: 0.8;"></a-box>
+            <a-entity
+            id="train"
+            gltf-model="url(./Models/train.gltf)"
+            position="0 0 0"
+            scale="5 5 5"
+            rotation="0 0 0">
+            </a-entity>
             <a-text value="Marker Found!" color="green" position="0 1 -2" scale="2 2 2"></a-text>
         </a-marker>
         <a-entity camera></a-entity>
