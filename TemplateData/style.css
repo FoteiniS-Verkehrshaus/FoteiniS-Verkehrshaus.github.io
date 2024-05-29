@@ -120,7 +120,15 @@ body {
    
 }
 @media (min-aspect-ratio:4/4) {
-    
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+       
+        margin: 0;
+        overflow: hidden;
+    }
 
     .unity-desktop
     {
