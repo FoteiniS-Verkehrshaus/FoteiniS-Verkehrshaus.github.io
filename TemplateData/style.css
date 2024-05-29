@@ -129,7 +129,7 @@ body {
         left: 50%;
         transform: translateX(-50%);
         height: 100%;/* Full height */
-        /* width: 68%; Maintain 6:5 aspect ratio 
+        width: 68%; /* Maintain 6:5 aspect ratio 
         max-width: 100vw;
         max-height: 100vh;*/
         image-rendering: optimizeQuality;
