@@ -65,11 +65,11 @@
       }
 
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/240529.loader.js";
+      var loaderUrl = buildUrl + "/240603.loader.js";
       var config = {
-        dataUrl: buildUrl + "/240529.data.unityweb",
-        frameworkUrl: buildUrl + "/240529.framework.js.unityweb",
-        codeUrl: buildUrl + "/240529.wasm.unityweb",
+        dataUrl: buildUrl + "/240603.data.unityweb",
+        frameworkUrl: buildUrl + "/240603.framework.js.unityweb",
+        codeUrl: buildUrl + "/240603.wasm.unityweb",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "Verkehrshaus der Schweiz",
         productName: "VHSmap",
@@ -81,7 +81,7 @@
       // Set this to false if you want to decouple this synchronization from
       // happening inside the engine, and you would instead like to size up
       // the canvas DOM size and WebGL render target sizes yourself.
-      // config.matchWebGLToCanvasSize = false;
+      //config.matchWebGLToCanvasSize = false;
 
       if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
         container.className = "unity-mobile";
@@ -91,9 +91,9 @@
         meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
         document.getElementsByTagName('head')[0].appendChild(meta);
 
-       /* canvas.style.width = "100%";
+        canvas.style.width = "100%";
         canvas.style.height = "100%";
-        canvas.style.position = "fixed";*/
+        canvas.style.position = "fixed";
 
         document.body.style.textAlign = "left";
         document.body.style.background = "#303030"; 
@@ -104,9 +104,9 @@
         canvas.height = container.clientHeight * window.devicePixelRatio;
         canvas.style.width = `${container.clientWidth}px`;
         canvas.style.height = `${container.clientHeight}px`;
-        /*canvas.style.width = "100%";
+        canvas.style.width = "100%";
         canvas.style.height = "100%";
-        canvas.style.position = "fixed";*/
+        canvas.style.position = "fixed";
 
         document.body.style.textAlign = "left";
         document.body.style.background = "#303030"; 
