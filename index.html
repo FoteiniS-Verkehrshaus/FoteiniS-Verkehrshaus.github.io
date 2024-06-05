@@ -1,39 +1,125 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+    <script>
+      const testVideo = document.createElement( "video" );
+            const canplayWebm = testVideo.canPlayType( 'video/webm; codecs="vp8, vorbis"' );
+            document.querySelector("#dpikto").setAttribute("src", "#dpikto");
+                document.querySelector("#dpikto").play();
+            // paintandquestPreviewButton.addEventListener('click', () => {
+            //   paintandquestPreviewButton.setAttribute("visible", false);
+            //   const testVideo = document.createElement( "video" );
+            //   const canplayWebm = testVideo.canPlayType( 'video/webm; codecs="vp8, vorbis"' );
+            //   if (canplayWebm == "") {
+            //     document.querySelector("#paintandquest-video-link").setAttribute("src", "#paintandquest-video-mp4");
+            //     document.querySelector("#paintandquest-video-mp4").play();
+            //   } else {
+            //     document.querySelector("#paintandquest-video-link").setAttribute("src", "#paintandquest-video-webm");
+            //     document.querySelector("#paintandquest-video-webm").play();
+            //   }
+            // });
+
+            setTimeout(() => {
+              done();
+            }, 100);
+          
+    </script>
     <style>
-        .hidden {
-            display: none;
-        }
-        #example-scanning-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-        }
+      body {
+        margin: 0;
+      }
+      .example-container {
+        overflow: hidden;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      }
+     
+      #example-scanning-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: transparent;
+    z-index: 2;
+      }
+      @media (min-aspect-ratio: 1/1) {
+    #example-scanning-overlay .inner {
+      width: 50vh;
+      height: 50vh;
+    }
+      }
+      @media (max-aspect-ratio: 1/1) {
+    #example-scanning-overlay .inner {
+      width: 80vw;
+      height: 80vw;
+    }
+      }
+
+      #example-scanning-overlay .inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+
+    background:
+      linear-gradient(to right, white 10px, transparent 10px) 0 0,
+      linear-gradient(to right, white 10px, transparent 10px) 0 100%,
+      linear-gradient(to left, white 10px, transparent 10px) 100% 0,
+      linear-gradient(to left, white 10px, transparent 10px) 100% 100%,
+      linear-gradient(to bottom, white 10px, transparent 10px) 0 0,
+      linear-gradient(to bottom, white 10px, transparent 10px) 100% 0,
+      linear-gradient(to top, white 10px, transparent 10px) 0 100%,
+      linear-gradient(to top, white 10px, transparent 10px) 100% 100%;
+    background-repeat: no-repeat;
+    background-size: 40px 40px;
+      }
+
+        
+      #example-scanning-overlay.hidden {
+    display: none;
+      }
+
+      #example-scanning-overlay img {
+    opacity: 0.6;
+    width: 90%;
+    align-self: center;
+      }
+
+      #example-scanning-overlay .inner .scanline {
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    background: white;
+    animation: move 2s linear infinite;
+      }
     </style>
   </head>
   <body>
-    <div id="example-scanning-overlay" class="hidden"></div>
-    <a-scene mindar-image="uiScanning=#example-scanning-overlay;imageTargetSrc: ./targets.mind;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
+    <div class="example-container">
+      <div id="example-scanning-overlay" class="hidden">
+    <div class="inner">
+      <img src="./targets.mind;showStats"/>
+      <div class="scanline"></div>
+    </div>
+      </div>
+    <a-scene mindar-image="imageTargetSrc: ./targets.mind;showStats: false; uiScanning: #example-scanning-overlay;" embedded color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">>
       <a-assets>
         <img id="card" src="./targets.mind" />
-        <video id="dpikto" autoplay loop="true" src="./Tourism_Video.mp4"></video>
+        <video id="dpikto"autoplay="true" loop="true" src="./Tourism_Video.mp4"></video>
         <a-asset-item id="avatarModel" src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/examples/image-tracking/assets/card-example/softmind/scene.gltf"></a-asset-item>
       </a-assets>
       <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
       <a-entity mindar-image-target="targetIndex: 0">
         <a-plane src="#card" position="0 0 0" height="1" width="1" rotation="0 0 0"></a-plane>
-        <a-video src="#dpikto"position="0 1 0" height="1" width="1" autoplay="true"></a-video>
+        <a-video src="#dpikto" webkit-playsinline playsinline position="0 1 0" height="1" width="1"></a-video>
         <a-gltf-model rotation="0 0 0 " position="0 0 0.1" scale="0.005 0.005 0.005" src="#avatarModel" animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
       </a-entity>
     </a-scene>
