@@ -7,24 +7,6 @@
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
 
     <script>
-      const showPortfolio = (done) => {
-        const portfolio = document.querySelector("#portfolio-panel");
-        
-        let y = 0;
-        let currentItem = 0;
-
-        portfolio.setAttribute("visible", true);
-
-        const videoElement = document.querySelector("#dpikto");
-        videoElement.play().catch(error => {
-          console.log('Video play error:', error);
-        });
-        document.querySelector("#dpikto").setAttribute("src", "#dpikto");
-            document.querySelector("#dpikto").play();
-          }
-        portfolio.setAttribute("position", "0 " + y + " -0.01");
-       
-      
       AFRAME.registerComponent('mytarget', {
         init: function () {
           let vid = document.querySelector('#dpikto'); 
@@ -32,8 +14,7 @@
           vid.pause();
           this.el.addEventListener('targetFound', event => {
             console.log("target found");
-            showPortfolio(() => { 
-                });
+           
             if(!playing) {
               vid.play();
             }
