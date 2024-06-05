@@ -30,10 +30,10 @@
           let vid = document.querySelector('#dpikto'); 
           let playing = false;
           vid.pause();
-          showPortfolio(() => { 
-                });
           this.el.addEventListener('targetFound', event => {
             console.log("target found");
+            showPortfolio(() => { 
+                });
             if(!playing) {
               vid.play();
             }
