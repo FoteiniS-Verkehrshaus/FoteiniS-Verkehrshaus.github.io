@@ -106,7 +106,7 @@
     <div class="example-container">
       <div id="example-scanning-overlay" class="hidden">
     <div class="inner">
-      <img src="./targets.mind;showStats"/>
+      <img src="./targets.mind"/>
       <div class="scanline"></div>
     </div>
       </div>
@@ -123,22 +123,5 @@
         <a-gltf-model rotation="0 0 0 " position="0 0 0.1" scale="0.005 0.005 0.005" src="#avatarModel" animation="property: position; to: 0 0.1 0.1; dur: 1000; easing: easeInOutQuad; loop: true; dir: alternate">
       </a-entity>
     </a-scene>
-
-    <script>
-      // Handle video playback issues
-      document.addEventListener('DOMContentLoaded', () => {
-          const video = document.querySelector('#dpikto');
-          const promise = video.play();
-          
-          if (promise !== undefined) {
-              promise.catch(error => {
-                  // Auto-play was prevented
-                  // Show a UI element to let the user manually start playback
-              }).then(() => {
-                  video.play();
-              });
-          }
-      });
-  </script>
   </body>
 </html>
